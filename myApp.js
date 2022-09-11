@@ -2,12 +2,14 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 let Person;
-console.log(process.env.MONGO_URL)
+
+
 mongoose.connect(process.env.MONGO_URL,
   {
     useNewUrlParser : true, 
     useUnifiedTopology : true
   });
+
 
 
 const createAndSavePerson = (done) => {
