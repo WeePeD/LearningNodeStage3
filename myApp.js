@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const express = require("express");
 const app = express();
 
-let Person;
 console.log(__dirname+'/sample.env')
 console.log(process.env.MONGO_URL);
 
@@ -12,20 +11,30 @@ mongoose.connect(process.env.MONGO_URL,{
   useUnifiedTopology: true
 });
 
-let personSchema = new mongoose.Schema({
+const personSchema = new mongoose.Schema({
   name:{
     type: String,
     require: true
   },
   age: Number,
-  favoriteFoods: Array
+  favoriteFoods: [String]
 });
 
+const Person = mongoose.model('Person',personSchema);
 
 
 
-const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+const createAndSavePerson = function(done) {
+  const User1 = new Person({
+    name : 'Dat',
+    age : 21,
+    favoriteFoods : ['KFC','Eatable things']
+  })
+
+  User1.save(function(err,data){
+    if (err) return console.log(err);
+    done(null,console.log('create success'))
+  })
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
