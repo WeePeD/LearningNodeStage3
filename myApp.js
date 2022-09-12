@@ -1,14 +1,16 @@
-require('dotenv').config();
+require('dotenv').config({path:__dirname+'/sample.env'});
 const mongoose = require('mongoose');
+const express = require("express");
+const app = express();
 
 let Person;
+console.log(__dirname+'/sample.env')
+console.log(process.env.MONGO_URL);
 
-
-mongoose.connect(process.env.MONGO_URL,
-  {
-    useNewUrlParser : true, 
-    useUnifiedTopology : true
-  });
+mongoose.connect(process.env.MONGO_URL,{
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+});
 
 
 
