@@ -29,18 +29,23 @@ const createAndSavePerson = function(done) {
     name : 'Dat',
     age : 21,
     favoriteFoods : ['KFC','Eatable things']
-  })
+  });
 
-  User1.save(function(err,data){
-    if (err) return console.log(err);
-    done(null,console.log('create success'))
-  })
+  User1.save();
 };
+
+arrayOfPeople = [
+  {name : 'user1',age : 20 ,favoriteFoods : ['chicken','fish']},
+  {name : 'user2',age : 21 ,favoriteFoods : ['chicken','fish']},
+  {name : 'user3',age : 22 ,favoriteFoods : ['chicken','fish']},
+];
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, function (err, people) {
+    if (err) return console.log(err);
+    done(null, people);
+  });
 };
-
 const findPeopleByName = (personName, done) => {
   done(null /*, data*/);
 };
