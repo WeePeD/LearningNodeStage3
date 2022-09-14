@@ -116,14 +116,14 @@ const queryChain = (done) => {
   Person.find({favoriteFoods : foodToSearch})
       .sort({name :1})//1 for ascending and -1 for descending
       .limit(2)
-      .select({age : 1})
+      .select({age : 0})
       .exec((err,data)=>{
         if (err) return console.log(err);
-        done(null,data);
+        console.log(data.name)
+        done(null,data)
       })
 };
 
-queryChain();
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
