@@ -114,8 +114,16 @@ const removeManyPeople = (done) => {
 const queryChain = (done) => {
   const foodToSearch = "burrito";
   Person.find({favoriteFoods : foodToSearch})
-      .sort({name : 1})
+      .sort({name :1})//1 for ascending and -1 for descending
+      .limit(2)
+      .select({age : 1})
+      .exec((err,data)=>{
+        if (err) return console.log(err);
+        done(null,data);
+      })
 };
+
+queryChain();
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
