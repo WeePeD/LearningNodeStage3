@@ -75,7 +75,7 @@ const findEditThenSave = function(personId, done) {
   Person.findById(personId, function(err,data){
     if (err) return console.log(err);
     else{
-      erson.favoriteFoods.push(foodToAdd);
+      person.favoriteFoods.push(foodToAdd);
       person.save((err,updatePerson)=>{
         if (err) return console.log(err);
         done(null,updatePerson);
